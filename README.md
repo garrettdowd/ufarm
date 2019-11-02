@@ -4,6 +4,10 @@ See the wiki to learn why growing your own food could be the best decision you m
 This repository contains all the information and code you need to get your own micro-farm up and running. This project is at early stages of development and has not been thouroughly tested. Caution is advised.
 
 # Overview
+![first_build](https://github.com/garrettdowd/ufarm/examples/aquaponics.jpeg "First Example Build")
+
+![first_build](https://github.com/garrettdowd/ufarm/examples/growth.jpeg "Basil Growth")
+
 ## Purpose
 Source of produce (herbs and leafy greens)
 
