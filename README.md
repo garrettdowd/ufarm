@@ -6,7 +6,7 @@ This repository contains all the information and code you need to get your own m
 # Overview
 ![first_build](https://github.com/garrettdowd/ufarm/blob/master/examples/aquaponics.jpg "First Example Build")
 
-![first_build](https://github.com/garrettdowd/ufarm/examples/blob/master/examples/growth.jpg "Basil Growth")
+![first_build](https://github.com/garrettdowd/ufarm/blob/master/examples/growth.jpg "Basil Growth")
 
 ## Purpose
 Source of produce (herbs and leafy greens)
