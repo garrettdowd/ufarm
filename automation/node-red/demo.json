@@ -1,0 +1,1327 @@
+[
+    {
+        "id": "4224ad5b.ae59bc",
+        "type": "tab",
+        "label": "UrbanEden Showoff",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "777241a3.b577c8",
+        "type": "trigger-state",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "input_boolean.eden_test_lights",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "kgha2c1hon",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "on"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 230,
+        "y": 140,
+        "wires": [
+            [
+                "e1b0bfdf.230d18",
+                "c72bae10.cdf698",
+                "82d05438.3675f8",
+                "2e100b0d.f8a854"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e1b0bfdf.230d18",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.media_bed_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 140,
+        "wires": [
+            [
+                "36068181.65271e"
+            ]
+        ]
+    },
+    {
+        "id": "30c0d31.d9eaa2c",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.media_bed_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 200,
+        "wires": [
+            [
+                "5203827a.7f648c"
+            ]
+        ]
+    },
+    {
+        "id": "2fa4a7ad.12ffd8",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.dwc_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 260,
+        "wires": [
+            [
+                "9eabb00.f21685"
+            ]
+        ]
+    },
+    {
+        "id": "14ae5f62.b07439",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.dwc_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 320,
+        "wires": [
+            [
+                "ba8863aa.be566"
+            ]
+        ]
+    },
+    {
+        "id": "36068181.65271e",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "700",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 950,
+        "y": 140,
+        "wires": [
+            [
+                "30c0d31.d9eaa2c"
+            ]
+        ]
+    },
+    {
+        "id": "5203827a.7f648c",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "700",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 950,
+        "y": 200,
+        "wires": [
+            [
+                "2fa4a7ad.12ffd8"
+            ]
+        ]
+    },
+    {
+        "id": "9eabb00.f21685",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "700",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 950,
+        "y": 260,
+        "wires": [
+            [
+                "14ae5f62.b07439"
+            ]
+        ]
+    },
+    {
+        "id": "ba8863aa.be566",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "4",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 940,
+        "y": 320,
+        "wires": [
+            [
+                "24879520.ec10da"
+            ]
+        ]
+    },
+    {
+        "id": "24879520.ec10da",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.media_bed_1, light.media_bed_2, light.dwc_1, light.dwc_2\",\"brightness\":150,\"transition\":40}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 400,
+        "wires": [
+            [
+                "69c594cc.dd8a44"
+            ]
+        ]
+    },
+    {
+        "id": "171974a5.fa9cbb",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.media_bed_1\",\"transition\":20}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 540,
+        "wires": [
+            [
+                "f33c92a8.2775c"
+            ]
+        ]
+    },
+    {
+        "id": "728e43b2.396b34",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.media_bed_2\",\"transition\":20}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 600,
+        "wires": [
+            [
+                "4942cde9.3061a4"
+            ]
+        ]
+    },
+    {
+        "id": "b7c3e788.0be6",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.dwc_1\",\"transition\":20}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 660,
+        "wires": [
+            [
+                "307865ce.3c7dd2"
+            ]
+        ]
+    },
+    {
+        "id": "db48fa74.4c698",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.dwc_2\",\"transition\":20}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 720,
+        "wires": [
+            [
+                "37e5a2c0.82bee6"
+            ]
+        ]
+    },
+    {
+        "id": "ddcb4720.d0176",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1160,
+        "y": 400,
+        "wires": [
+            [
+                "eef3a4c3.d5e48"
+            ]
+        ]
+    },
+    {
+        "id": "f33c92a8.2775c",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 940,
+        "y": 540,
+        "wires": [
+            [
+                "728e43b2.396b34"
+            ]
+        ]
+    },
+    {
+        "id": "4942cde9.3061a4",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 940,
+        "y": 600,
+        "wires": [
+            [
+                "b7c3e788.0be6"
+            ]
+        ]
+    },
+    {
+        "id": "307865ce.3c7dd2",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 940,
+        "y": 660,
+        "wires": [
+            [
+                "db48fa74.4c698"
+            ]
+        ]
+    },
+    {
+        "id": "c7b0af78.7e5628",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"input_boolean.eden_test_lights\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 780,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e84e5f43.03d2a8",
+        "type": "trigger-state",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "input_boolean.eden_test_switches",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "kgha2c1hon",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "on"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 296.20001220703125,
+        "y": 1048.199951171875,
+        "wires": [
+            [
+                "ee5b085b.aa6908"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ee5b085b.aa6908",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.media_bed_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 630,
+        "y": 1000,
+        "wires": [
+            [
+                "96a7efbe.ccbb9"
+            ]
+        ]
+    },
+    {
+        "id": "a0d0af4d.5be958",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.media_bed_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 630,
+        "y": 1040,
+        "wires": [
+            [
+                "403a3a02.ea370c"
+            ]
+        ]
+    },
+    {
+        "id": "80f3ff76.ec0c38",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.dwc_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 631.7555541992188,
+        "y": 1089.3110656738281,
+        "wires": [
+            [
+                "c679e071.0a2748"
+            ]
+        ]
+    },
+    {
+        "id": "4539e3de.f52784",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.dwc_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 630,
+        "y": 1140,
+        "wires": [
+            [
+                "876e4673.439fb8"
+            ]
+        ]
+    },
+    {
+        "id": "96a7efbe.ccbb9",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "400",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 830,
+        "y": 1000,
+        "wires": [
+            [
+                "a0d0af4d.5be958"
+            ]
+        ]
+    },
+    {
+        "id": "403a3a02.ea370c",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "400",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 830,
+        "y": 1040,
+        "wires": [
+            [
+                "80f3ff76.ec0c38"
+            ]
+        ]
+    },
+    {
+        "id": "c679e071.0a2748",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "400",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 831.7555541992188,
+        "y": 1089.3110656738281,
+        "wires": [
+            [
+                "4539e3de.f52784"
+            ]
+        ]
+    },
+    {
+        "id": "876e4673.439fb8",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2000",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 840,
+        "y": 1140,
+        "wires": [
+            [
+                "b82b1273.197fc"
+            ]
+        ]
+    },
+    {
+        "id": "91710eb0.021f28",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.media_bed_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 629,
+        "y": 1479,
+        "wires": [
+            [
+                "d49f2c4d.74036"
+            ]
+        ]
+    },
+    {
+        "id": "33331279.c6ace6",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.media_bed_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 629,
+        "y": 1539,
+        "wires": [
+            [
+                "f1ac400b.856dd"
+            ]
+        ]
+    },
+    {
+        "id": "48719db5.e2d33c",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.dwc_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 629,
+        "y": 1599,
+        "wires": [
+            [
+                "d76cfb6c.b0dc6"
+            ]
+        ]
+    },
+    {
+        "id": "5a235b8d.b222c4",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.dwc_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 629,
+        "y": 1659,
+        "wires": [
+            [
+                "97e13ffa.f53ae"
+            ]
+        ]
+    },
+    {
+        "id": "d49f2c4d.74036",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "400",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 829,
+        "y": 1479,
+        "wires": [
+            [
+                "33331279.c6ace6"
+            ]
+        ]
+    },
+    {
+        "id": "f1ac400b.856dd",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "400",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 829,
+        "y": 1539,
+        "wires": [
+            [
+                "48719db5.e2d33c"
+            ]
+        ]
+    },
+    {
+        "id": "d76cfb6c.b0dc6",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "400",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 829,
+        "y": 1599,
+        "wires": [
+            [
+                "5a235b8d.b222c4"
+            ]
+        ]
+    },
+    {
+        "id": "85a7a775.6a765",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.media_bed_1_drain\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 632,
+        "y": 1282,
+        "wires": [
+            [
+                "2e70fae7.7d0c96"
+            ]
+        ]
+    },
+    {
+        "id": "9712ade3.a38a38",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.media_bed_2_drain\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 632,
+        "y": 1322,
+        "wires": [
+            [
+                "2d098079.734a9"
+            ]
+        ]
+    },
+    {
+        "id": "2e70fae7.7d0c96",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "800",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 832,
+        "y": 1282,
+        "wires": [
+            [
+                "9712ade3.a38a38"
+            ]
+        ]
+    },
+    {
+        "id": "fee71c3b.a19f68",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.media_bed_1_drain, switch.media_bed_2_drain, switch.sump, switch.outlet_2\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 632,
+        "y": 1362,
+        "wires": [
+            [
+                "fdd07112.0cb23"
+            ]
+        ]
+    },
+    {
+        "id": "2d098079.734a9",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 842,
+        "y": 1322,
+        "wires": [
+            [
+                "fee71c3b.a19f68"
+            ]
+        ]
+    },
+    {
+        "id": "fdd07112.0cb23",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 832,
+        "y": 1362,
+        "wires": [
+            [
+                "91710eb0.021f28"
+            ]
+        ]
+    },
+    {
+        "id": "97e13ffa.f53ae",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"input_boolean.eden_test_switches\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 660,
+        "y": 1740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69c594cc.dd8a44",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.microgreens\",\"brightness\":50,\"transition\":40}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 970,
+        "y": 400,
+        "wires": [
+            [
+                "ddcb4720.d0176"
+            ]
+        ]
+    },
+    {
+        "id": "eef3a4c3.d5e48",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.microgreens\",\"transition\":20}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 480,
+        "wires": [
+            [
+                "c22e22f3.554b78"
+            ]
+        ]
+    },
+    {
+        "id": "c22e22f3.554b78",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 940,
+        "y": 480,
+        "wires": [
+            [
+                "171974a5.fa9cbb"
+            ]
+        ]
+    },
+    {
+        "id": "801a845.12fc4f8",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "900",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 832,
+        "y": 1242,
+        "wires": [
+            [
+                "85a7a775.6a765"
+            ]
+        ]
+    },
+    {
+        "id": "cfae24cb.fd7208",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.sump\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 632,
+        "y": 1242,
+        "wires": [
+            [
+                "801a845.12fc4f8"
+            ]
+        ]
+    },
+    {
+        "id": "b82b1273.197fc",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.outlet_2\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 632,
+        "y": 1201,
+        "wires": [
+            [
+                "cfae24cb.fd7208"
+            ]
+        ]
+    },
+    {
+        "id": "ba5c77a0.4b71e8",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.den_light\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "b9b190f.9df307"
+            ]
+        ]
+    },
+    {
+        "id": "82d05438.3675f8",
+        "type": "api-current-state",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.den_light",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 190,
+        "y": 320,
+        "wires": [
+            [
+                "ba5c77a0.4b71e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a33c610d.d252e8",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.kitchen_light\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 450,
+        "y": 360,
+        "wires": [
+            [
+                "80de849e.4a32c8"
+            ]
+        ]
+    },
+    {
+        "id": "c72bae10.cdf698",
+        "type": "api-current-state",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.kitchen_light",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "a33c610d.d252e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b9b190f.9df307",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "24",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 280,
+        "y": 460,
+        "wires": [
+            [
+                "f78c26ec.4d2398"
+            ]
+        ]
+    },
+    {
+        "id": "80de849e.4a32c8",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "24",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 280,
+        "y": 500,
+        "wires": [
+            [
+                "b5bc1646.f48b2"
+            ]
+        ]
+    },
+    {
+        "id": "b5bc1646.f48b2",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.kitchen_light\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 450,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f78c26ec.4d2398",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.den_light\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 450,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7dbed4f6.1eca3c",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.aquarium_light\",\"brightness\":255,\"effect\":\"rainbow\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 910,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e100b0d.f8a854",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "700",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 730,
+        "y": 80,
+        "wires": [
+            [
+                "7dbed4f6.1eca3c"
+            ]
+        ]
+    },
+    {
+        "id": "7ed149d0.9e4ac",
+        "type": "api-call-service",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.aquarium_light\",\"brightness\":255,\"effect\":\"remove_effects\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 750,
+        "y": 780,
+        "wires": [
+            [
+                "c7b0af78.7e5628"
+            ]
+        ]
+    },
+    {
+        "id": "37e5a2c0.82bee6",
+        "type": "delay",
+        "z": "4224ad5b.ae59bc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 940,
+        "y": 720,
+        "wires": [
+            [
+                "7ed149d0.9e4ac"
+            ]
+        ]
+    },
+    {
+        "id": "dbabbd10.d71138",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant",
+        "legacy": false,
+        "hassio": false,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]

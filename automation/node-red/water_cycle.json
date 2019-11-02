@@ -1,0 +1,852 @@
+[
+    {
+        "id": "79421e7f.9872d8",
+        "type": "tab",
+        "label": "UrbanEden Water Cycle",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1b840dd2.c76932",
+        "type": "inject",
+        "z": "79421e7f.9872d8",
+        "name": "Cycle Interval",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "*/30 1-23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 240,
+        "y": 220,
+        "wires": [
+            [
+                "353a8110.8abd0e"
+            ]
+        ]
+    },
+    {
+        "id": "1ce06591.685c0a",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.sump\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1358,
+        "y": 382,
+        "wires": [
+            [
+                "16252fe1.a78d38"
+            ]
+        ]
+    },
+    {
+        "id": "16252fe1.a78d38",
+        "type": "delay",
+        "z": "79421e7f.9872d8",
+        "name": "Media Bed Fill Time - 270s",
+        "pauseType": "delayv",
+        "timeout": "4.5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1388,
+        "y": 442,
+        "wires": [
+            [
+                "8bb8a037.e58e5",
+                "a679b3bf.91a3c"
+            ]
+        ]
+    },
+    {
+        "id": "14f9d6fd.b53fb9",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.media_bed_1_drain, switch.media_bed_2_drain\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1638,
+        "y": 502,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92455501.74ba08",
+        "type": "delay",
+        "z": "79421e7f.9872d8",
+        "name": "Media Bed Drain Time - 160s",
+        "pauseType": "delay",
+        "timeout": "160",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1388,
+        "y": 562,
+        "wires": [
+            [
+                "a55bfcb5.c6cfd8"
+            ]
+        ]
+    },
+    {
+        "id": "a55bfcb5.c6cfd8",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.media_bed_1_drain, switch.media_bed_2_drain\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1638,
+        "y": 562,
+        "wires": [
+            [
+                "7d05afa4.581f4"
+            ]
+        ]
+    },
+    {
+        "id": "c8250cf2.cdd66",
+        "type": "change",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "cycle",
+                "pt": "flow",
+                "to": "off",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1038,
+        "y": 602,
+        "wires": [
+            [
+                "3301bf49.a0b298"
+            ]
+        ]
+    },
+    {
+        "id": "a679b3bf.91a3c",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.sump\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1638,
+        "y": 442,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d0999381.fcd348",
+        "type": "trigger-state",
+        "z": "79421e7f.9872d8",
+        "name": "HA Input Boolean",
+        "server": "dbabbd10.d71138",
+        "entityid": "input_boolean.eden_cycle_override",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "w2bvmbqyz7e",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "on"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 518,
+        "y": 362,
+        "wires": [
+            [
+                "eab57d33.9dc238"
+            ],
+            [
+                "c8250cf2.cdd66"
+            ]
+        ]
+    },
+    {
+        "id": "fe48a899.65b9b",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"input_boolean.eden_cycle_override\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 548,
+        "y": 222,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3301bf49.a0b298",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"input_boolean.eden_cycle_override\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 548,
+        "y": 682,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7af47709.d8685",
+        "type": "comment",
+        "z": "79421e7f.9872d8",
+        "name": "HA Control Override",
+        "info": "",
+        "x": 518,
+        "y": 122,
+        "wires": []
+    },
+    {
+        "id": "38eec921.67b18e",
+        "type": "comment",
+        "z": "79421e7f.9872d8",
+        "name": "Scheduler",
+        "info": "",
+        "x": 200,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2f8dc241.5ddfae",
+        "type": "comment",
+        "z": "79421e7f.9872d8",
+        "name": "Master Loop",
+        "info": "",
+        "x": 1038,
+        "y": 122,
+        "wires": []
+    },
+    {
+        "id": "73e8509a.f6142",
+        "type": "comment",
+        "z": "79421e7f.9872d8",
+        "name": "Cycle Loop",
+        "info": "",
+        "x": 1338,
+        "y": 122,
+        "wires": []
+    },
+    {
+        "id": "353a8110.8abd0e",
+        "type": "api-current-state",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.eden_water_cycle",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 608,
+        "y": 302,
+        "wires": [
+            [
+                "fe48a899.65b9b",
+                "796a7d5e.52d4ec"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "12fd71a1.36b0b6",
+        "type": "trigger-state",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "input_boolean.eden_water_cycle_reset",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "e10s9uqnojp",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "on"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 628,
+        "y": 762,
+        "wires": [
+            [
+                "aaf73a64.f22cc8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "aaf73a64.f22cc8",
+        "type": "change",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1048,
+        "y": 782,
+        "wires": [
+            [
+                "16252fe1.a78d38",
+                "92455501.74ba08",
+                "e47b7451.878f9",
+                "8bb8a037.e58e5",
+                "ba8a75fe.387fd8"
+            ]
+        ]
+    },
+    {
+        "id": "c8fd2b25.f7545",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"input_boolean.eden_water_cycle_reset\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1088,
+        "y": 922,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2653dabe.4444e6",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"input_boolean.eden_water_cycle\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 548,
+        "y": 1022,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5171df9c.50ca9",
+        "type": "comment",
+        "z": "79421e7f.9872d8",
+        "name": "Turn Back On Water Cycle",
+        "info": "if it has been off for too long\n",
+        "x": 533,
+        "y": 895,
+        "wires": []
+    },
+    {
+        "id": "e47b7451.878f9",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.media_bed_1_drain, switch.media_bed_2_drain, switch.sump\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1058,
+        "y": 842,
+        "wires": [
+            [
+                "3410a389.0a15b4"
+            ]
+        ]
+    },
+    {
+        "id": "16100bf7.51dbfc",
+        "type": "trigger-state",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "input_boolean.eden_water_cycle",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "evm5p50iz3c",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "off"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 608,
+        "y": 942,
+        "wires": [
+            [
+                "801a82a4.c4a56"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "801a82a4.c4a56",
+        "type": "delay",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "hours",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 488,
+        "y": 982,
+        "wires": [
+            [
+                "2653dabe.4444e6"
+            ]
+        ]
+    },
+    {
+        "id": "375543af.c1968c",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.media_bed_1_drain\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 498,
+        "y": 1242,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de0b99fa.c936",
+        "type": "comment",
+        "z": "79421e7f.9872d8",
+        "name": "Turn OFF Valves",
+        "info": "if it has been on for too long\n",
+        "x": 483,
+        "y": 1115,
+        "wires": []
+    },
+    {
+        "id": "d0761200.1316c8",
+        "type": "trigger-state",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "switch.media_bed_1_drain",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "dtopklsl8b9",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "on"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 568,
+        "y": 1162,
+        "wires": [
+            [
+                "d501345a.4a8cb8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d501345a.4a8cb8",
+        "type": "delay",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 468,
+        "y": 1202,
+        "wires": [
+            [
+                "375543af.c1968c"
+            ]
+        ]
+    },
+    {
+        "id": "6539be2e.17c0b",
+        "type": "api-call-service",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.media_bed_2_drain\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 498,
+        "y": 1362,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "244eed7d.9e0022",
+        "type": "trigger-state",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "switch.media_bed_2_drain",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "dtopklsl8b9",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "on"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 568,
+        "y": 1282,
+        "wires": [
+            [
+                "d771680c.b85f9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d771680c.b85f9",
+        "type": "delay",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 468,
+        "y": 1322,
+        "wires": [
+            [
+                "6539be2e.17c0b"
+            ]
+        ]
+    },
+    {
+        "id": "8bb8a037.e58e5",
+        "type": "delay",
+        "z": "79421e7f.9872d8",
+        "name": "Shutdown Time - 70s",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1368,
+        "y": 502,
+        "wires": [
+            [
+                "14f9d6fd.b53fb9",
+                "92455501.74ba08"
+            ]
+        ]
+    },
+    {
+        "id": "ba8a75fe.387fd8",
+        "type": "delay",
+        "z": "79421e7f.9872d8",
+        "name": "Min Cycle Length",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1058,
+        "y": 462,
+        "wires": [
+            [
+                "c8250cf2.cdd66"
+            ]
+        ]
+    },
+    {
+        "id": "eab57d33.9dc238",
+        "type": "change",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "cycle",
+                "pt": "flow",
+                "to": "on",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1038,
+        "y": 342,
+        "wires": [
+            [
+                "ba8a75fe.387fd8",
+                "1ce06591.685c0a"
+            ]
+        ]
+    },
+    {
+        "id": "7d05afa4.581f4",
+        "type": "switch",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "property": "cycle",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1318,
+        "y": 662,
+        "wires": [
+            [
+                "1ce06591.685c0a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "85c5d632.f74",
+        "type": "delay",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1228,
+        "y": 882,
+        "wires": [
+            [
+                "c8fd2b25.f7545"
+            ]
+        ]
+    },
+    {
+        "id": "3410a389.0a15b4",
+        "type": "change",
+        "z": "79421e7f.9872d8",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "reset",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1058,
+        "y": 882,
+        "wires": [
+            [
+                "85c5d632.f74"
+            ]
+        ]
+    },
+    {
+        "id": "796a7d5e.52d4ec",
+        "type": "function",
+        "z": "79421e7f.9872d8",
+        "name": "Make Cycle Longer?",
+        "func": "min2ms = 60*1000; // convert minutes to milliseconds\n\nlimit = 60*min2ms; //min\nnew_delay=7*min2ms; // time for water to circulate if past limit\n\nvar TS = msg.timestamp;\nvar lastTS = context.get('lastTS')||0;\nif (TS-lastTS > limit) {\n    msg.delay = 6*min2ms; //make cycle longer if previously delayed\n}\ncontext.set('lastTS',TS);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1068,
+        "y": 282,
+        "wires": [
+            [
+                "eab57d33.9dc238"
+            ]
+        ]
+    },
+    {
+        "id": "dbabbd10.d71138",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant",
+        "legacy": false,
+        "hassio": false,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]

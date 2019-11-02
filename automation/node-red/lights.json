@@ -1,0 +1,862 @@
+[
+    {
+        "id": "a91f2017.80c47",
+        "type": "subflow",
+        "name": "Subflow 2",
+        "info": "",
+        "in": [
+            {
+                "x": 70,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "f6b1e10f.d1ab5"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 510,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "bd2d773f.0baf8",
+                        "port": 0
+                    },
+                    {
+                        "id": "7fe6c3f2.7d0eec",
+                        "port": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "bd2d773f.0baf8",
+        "type": "change",
+        "z": "a91f2017.80c47",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"state\":\"ON\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6b1e10f.d1ab5",
+        "type": "switch",
+        "z": "a91f2017.80c47",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "bd2d773f.0baf8"
+            ],
+            [
+                "7fe6c3f2.7d0eec"
+            ]
+        ]
+    },
+    {
+        "id": "7fe6c3f2.7d0eec",
+        "type": "change",
+        "z": "a91f2017.80c47",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"state\":\"OFF\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 361,
+        "y": 116,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8f89a6b6.6195c",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 146,
+                "wires": [
+                    {
+                        "id": "31b46381.60e6c4"
+                    }
+                ]
+            }
+        ],
+        "out": []
+    },
+    {
+        "id": "ac3362bc.5e0e08",
+        "type": "api-call-service",
+        "z": "8f89a6b6.6195c",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"{{ payload.data.entity_id }}\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 606,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c54de65.12e9f",
+        "type": "switch",
+        "z": "8f89a6b6.6195c",
+        "name": "",
+        "property": "payload.state",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ON",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "OFF",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 146,
+        "wires": [
+            [
+                "2e37206c.1a0a28"
+            ],
+            [
+                "7fd1b8e4.2393",
+                "843630ea.a730d8"
+            ]
+        ]
+    },
+    {
+        "id": "7fd1b8e4.2393",
+        "type": "api-call-service",
+        "z": "8f89a6b6.6195c",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"{{ payload.data.entity_id }}\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 606,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e37206c.1a0a28",
+        "type": "change",
+        "z": "8f89a6b6.6195c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.data.brightness",
+                "pt": "msg",
+                "to": "payload.brightness",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 316,
+        "y": 80,
+        "wires": [
+            [
+                "ac3362bc.5e0e08",
+                "843630ea.a730d8"
+            ]
+        ]
+    },
+    {
+        "id": "843630ea.a730d8",
+        "type": "debug",
+        "z": "8f89a6b6.6195c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 589,
+        "y": 216,
+        "wires": []
+    },
+    {
+        "id": "31b46381.60e6c4",
+        "type": "change",
+        "z": "8f89a6b6.6195c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.data.entity_id",
+                "pt": "msg",
+                "to": "payload.entity_id",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.data.transition",
+                "pt": "msg",
+                "to": "payload.transition",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 146,
+        "wires": [
+            [
+                "8c54de65.12e9f"
+            ]
+        ]
+    },
+    {
+        "id": "36c2deec.7f7512",
+        "type": "tab",
+        "label": "UrbanEden Lights",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "68c15437.448a54",
+        "type": "trigger-state",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "light.media_bed_1",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "blzdm5wgbg",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "property",
+                "propertyValue": "new_state.attributes.brightness",
+                "comparatorType": ">",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "50"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 210,
+        "y": 120,
+        "wires": [
+            [
+                "288fafc1.c3d2d"
+            ],
+            [
+                "e409f8da.f4b41"
+            ]
+        ]
+    },
+    {
+        "id": "288fafc1.c3d2d",
+        "type": "api-call-service",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.media_bed_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 530,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e409f8da.f4b41",
+        "type": "api-call-service",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.media_bed_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 530,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd6dbd44.2d12a8",
+        "type": "trigger-state",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "light.media_bed_2",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "blzdm5wgbg",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "property",
+                "propertyValue": "new_state.attributes.brightness",
+                "comparatorType": ">",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "50"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 210,
+        "y": 280,
+        "wires": [
+            [
+                "3cd6c52f.7f2cfa"
+            ],
+            [
+                "dde5bede.776bf"
+            ]
+        ]
+    },
+    {
+        "id": "3cd6c52f.7f2cfa",
+        "type": "api-call-service",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.media_bed_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 530,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dde5bede.776bf",
+        "type": "api-call-service",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.media_bed_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 530,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a2e4aabc.8041a",
+        "type": "trigger-state",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "light.dwc_1",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "blzdm5wgbg",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "property",
+                "propertyValue": "new_state.attributes.brightness",
+                "comparatorType": ">",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "50"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 190,
+        "y": 440,
+        "wires": [
+            [
+                "95b8ebdb.ac0468"
+            ],
+            [
+                "557bc2b9.526a14"
+            ]
+        ]
+    },
+    {
+        "id": "95b8ebdb.ac0468",
+        "type": "api-call-service",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.dwc_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 530,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "557bc2b9.526a14",
+        "type": "api-call-service",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.dwc_light_1_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 530,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8623a205.bc0368",
+        "type": "trigger-state",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "entityid": "light.dwc_2",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "blzdm5wgbg",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "property",
+                "propertyValue": "new_state.attributes.brightness",
+                "comparatorType": ">",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "50"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 190,
+        "y": 600,
+        "wires": [
+            [
+                "96852803.1e92f8"
+            ],
+            [
+                "1277dbe6.eaf1ec"
+            ]
+        ]
+    },
+    {
+        "id": "96852803.1e92f8",
+        "type": "api-call-service",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.dwc_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 530,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1277dbe6.eaf1ec",
+        "type": "api-call-service",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "server": "dbabbd10.d71138",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.dwc_light_2_fan\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 530,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cd3560d0.0b431",
+        "type": "change",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.entity_id",
+                "pt": "msg",
+                "to": "light.media_bed_1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 1140,
+        "wires": [
+            [
+                "fefe7df7.7d4c58"
+            ]
+        ]
+    },
+    {
+        "id": "45b187b.3c75b78",
+        "type": "change",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.brightness",
+                "pt": "msg",
+                "to": "130",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "payload.transition",
+                "pt": "msg",
+                "to": "15",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 251,
+        "y": 1056,
+        "wires": [
+            [
+                "cd3560d0.0b431",
+                "fc4bab08.a7c138",
+                "6154c69b.ceab98",
+                "5f95c57.e7a9cbc"
+            ]
+        ]
+    },
+    {
+        "id": "fefe7df7.7d4c58",
+        "type": "subflow:8f89a6b6.6195c",
+        "z": "36c2deec.7f7512",
+        "name": "Update Light",
+        "env": [],
+        "x": 650,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "efa02f09.295a",
+        "type": "schedex",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "07:01",
+        "ontopic": "",
+        "onpayload": "on",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "21:01",
+        "offtopic": "",
+        "offpayload": "off",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 200,
+        "y": 900,
+        "wires": [
+            [
+                "6ab59df8.3c8fbc"
+            ]
+        ]
+    },
+    {
+        "id": "fc4bab08.a7c138",
+        "type": "change",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.entity_id",
+                "pt": "msg",
+                "to": "light.media_bed_2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 334,
+        "y": 1202,
+        "wires": [
+            [
+                "fefe7df7.7d4c58"
+            ]
+        ]
+    },
+    {
+        "id": "3a7f22e1.e8d246",
+        "type": "inject",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 780,
+        "wires": [
+            [
+                "efa02f09.295a"
+            ]
+        ]
+    },
+    {
+        "id": "4216379f.7403f",
+        "type": "inject",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 820,
+        "wires": [
+            [
+                "efa02f09.295a"
+            ]
+        ]
+    },
+    {
+        "id": "6ab59df8.3c8fbc",
+        "type": "subflow:a91f2017.80c47",
+        "z": "36c2deec.7f7512",
+        "name": "Set onoff state",
+        "env": [],
+        "x": 200,
+        "y": 980,
+        "wires": [
+            [
+                "45b187b.3c75b78"
+            ]
+        ]
+    },
+    {
+        "id": "a5e1994f.b400e",
+        "type": "change",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.entity_id",
+                "pt": "msg",
+                "to": "light.aquarium_light",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 324,
+        "y": 1443,
+        "wires": [
+            [
+                "fefe7df7.7d4c58"
+            ]
+        ]
+    },
+    {
+        "id": "5f95c57.e7a9cbc",
+        "type": "change",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.brightness",
+                "pt": "msg",
+                "to": "100",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 271,
+        "y": 1383,
+        "wires": [
+            [
+                "a5e1994f.b400e"
+            ]
+        ]
+    },
+    {
+        "id": "6154c69b.ceab98",
+        "type": "change",
+        "z": "36c2deec.7f7512",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.entity_id",
+                "pt": "msg",
+                "to": "light.dwc_2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 1260,
+        "wires": [
+            [
+                "fefe7df7.7d4c58"
+            ]
+        ]
+    },
+    {
+        "id": "dbabbd10.d71138",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant",
+        "legacy": false,
+        "hassio": false,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]

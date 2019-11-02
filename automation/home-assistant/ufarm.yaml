@@ -1,0 +1,245 @@
+################################################
+#
+# Urban Eden Indoor Aquaponic System (aquaponic, farm/garden, vertical, indoor, automated)
+#
+# Adapted from https://github.com/master-kenobi/ha-alarmclock
+#
+################################################
+
+
+group:
+
+  eden_all_lights:
+    name: All Lights
+    entities:
+      - light.aquarium_light
+      - light.media_bed_1
+      - light.media_bed_2
+      - light.dwc_1
+      - light.dwc_2
+      - light.microgreens
+
+  eden_light_fans:
+    name: Light Fans
+    entities:
+      - switch.media_bed_light_1_fan
+      - switch.media_bed_light_2_fan
+      - switch.dwc_light_1_fan
+      - switch.dwc_light_2_fan
+
+  eden_manual_control:
+    name: Manual Override
+    control: hidden
+    entities:
+      - input_boolean.eden_water_cycle
+      - input_boolean.eden_water_cycle_reset
+      - light.aquarium_light
+      - light.media_bed_1
+      - light.media_bed_2
+      - light.dwc_1
+      - light.dwc_2
+      - light.microgreens
+      - switch.sump
+      - switch.outlet_2
+      - switch.media_bed_1_drain
+      - switch.media_bed_2_drain
+      - switch.media_bed_light_1_fan
+      - switch.media_bed_light_2_fan
+      - switch.dwc_light_1_fan
+      - switch.dwc_light_2_fan
+
+  eden_show_off:
+    name: Show Off
+    control: hidden
+    entities:
+      - input_boolean.eden_test_lights
+      - input_boolean.eden_test_switches
+      - input_boolean.eden_cycle_override
+
+
+input_boolean:
+  eden_cycle_override:
+    name: Override Cycle
+  eden_test_lights:
+    name: Test Lights
+  eden_test_switches:
+    name: Test Switches
+  eden_water_cycle:
+    name: Water Cycle
+  eden_water_cycle_reset:
+    name: Water Cycle Emergency Reset
+
+
+
+light:
+  - platform: mqtt
+    schema: json
+    name: "Media Bed 1"
+    state_topic: "clb/urban_eden/EDEN1/light/OS1/stat"
+    command_topic: "clb/urban_eden/EDEN1/light/OS1/set"
+    brightness: true
+    brightness_scale: 255
+    rgb: false
+    white_value: false
+    color_temp: false
+    effect: true
+    effect_list: [alarm, boot_up, colorfade_slow, colorfade_fast, entrance, flash, music, rainbow, clock, array, dinner, movie, rgb_off, no_array, remove_effects, none]
+    optimistic: false
+    retain: true
+    # qos: 1
+    # availability_topic: "clb/urban_eden/EDEN1/stat"
+    # payload_available: "online"
+    # payload_not_available: "offline"
+
+  - platform: mqtt
+    schema: json
+    name: "Media Bed 2"
+    state_topic: "clb/urban_eden/EDEN1/light/OS2/stat"
+    command_topic: "clb/urban_eden/EDEN1/light/OS2/set"
+    brightness: true
+    brightness_scale: 255
+    rgb: false
+    white_value: false
+    color_temp: false
+    effect: true
+    effect_list: [alarm, boot_up, colorfade_slow, colorfade_fast, entrance, flash, music, rainbow, clock, array, dinner, movie, rgb_off, no_array, remove_effects, none]
+    optimistic: false
+    retain: true
+
+  - platform: mqtt
+    schema: json
+    name: "DWC 1"
+    state_topic: "clb/urban_eden/EDEN1/light/OS3/stat"
+    command_topic: "clb/urban_eden/EDEN1/light/OS3/set"
+    brightness: true
+    brightness_scale: 255
+    rgb: false
+    white_value: false
+    color_temp: false
+    effect: true
+    effect_list: [alarm, boot_up, colorfade_slow, colorfade_fast, entrance, flash, music, rainbow, clock, array, dinner, movie, rgb_off, no_array, remove_effects, none]
+    optimistic: false
+    retain: true
+
+  - platform: mqtt
+    schema: json
+    name: "DWC 2"
+    state_topic: "clb/urban_eden/EDEN1/light/OS4/stat"
+    command_topic: "clb/urban_eden/EDEN1/light/OS4/set"
+    brightness: true
+    brightness_scale: 255
+    rgb: false
+    white_value: false
+    color_temp: false
+    effect: true
+    effect_list: [alarm, boot_up, colorfade_slow, colorfade_fast, entrance, flash, music, rainbow, clock, array, dinner, movie, rgb_off, no_array, remove_effects, none]
+    optimistic: false
+    retain: true
+
+  - platform: mqtt
+    schema: json
+    name: "Microgreens"
+    state_topic: "clb/urban_eden/EDEN1/light/OS5/stat"
+    command_topic: "clb/urban_eden/EDEN1/light/OS5/set"
+    brightness: true
+    brightness_scale: 255
+    rgb: false
+    white_value: false
+    color_temp: false
+    effect: true
+    effect_list: [alarm, boot_up, colorfade_slow, colorfade_fast, entrance, flash, music, rainbow, clock, array, dinner, movie, rgb_off, no_array, remove_effects, none]
+    optimistic: false
+    retain: true
+
+  - platform: mqtt
+    schema: json
+    name: "Aquarium Light"
+    state_topic: "clb/lights/N_8266_2"
+    command_topic: "clb/lights/N_8266_2/set"
+    # state_topic: "clb/urban_eden/EDEN1/light/NEO/stat"
+    # command_topic: "clb/urban_eden/EDEN1/light/NEO/set"
+    brightness: true
+    rgb: true
+    white_value: true
+    color_temp: true
+    effect: true
+    effect_list: [alarm, boot_up, colorfade_slow, colorfade_fast, flash, music, rainbow, array, rgb_off, no_array, remove_effects, none]
+    flash_time_long: 7
+    flash_time_short: 3
+    optimistic: false
+
+
+
+switch:
+  - platform: mqtt
+    name: "Sump"
+    command_topic: "clb/urban_eden/EDEN1/switch/RLY1/set"
+    state_topic: "clb/urban_eden/EDEN1/switch/RLY1/stat"
+    retain: true
+  - platform: mqtt
+    name: "Outlet 2"
+    command_topic: "clb/urban_eden/EDEN1/switch/RLY2/set"
+    state_topic: "clb/urban_eden/EDEN1/switch/RLY2/stat"
+    retain: true
+  - platform: mqtt
+    name: "Media Bed 1 Drain"
+    command_topic: "clb/urban_eden/EDEN1/switch/RLY3/set"
+    state_topic: "clb/urban_eden/EDEN1/switch/RLY3/stat"
+    retain: true
+  - platform: mqtt
+    name: "Media Bed 2 Drain"
+    command_topic: "clb/urban_eden/EDEN1/switch/RLY4/set"
+    state_topic: "clb/urban_eden/EDEN1/switch/RLY4/stat"
+    retain: true
+  - platform: mqtt
+    name: "Media Bed Light 1 Fan"
+    command_topic: "clb/urban_eden/EDEN1/switch/RLY5/set"
+    state_topic: "clb/urban_eden/EDEN1/switch/RLY5/stat"
+    retain: true
+  - platform: mqtt
+    name: "Media Bed Light 2 Fan"
+    command_topic: "clb/urban_eden/EDEN1/switch/RLY6/set"
+    state_topic: "clb/urban_eden/EDEN1/switch/RLY6/stat"
+    retain: true
+  - platform: mqtt
+    name: "DWC Light 1 Fan"
+    command_topic: "clb/urban_eden/EDEN1/switch/RLY7/set"
+    state_topic: "clb/urban_eden/EDEN1/switch/RLY7/stat"
+    retain: true
+  - platform: mqtt
+    name: "DWC Light 2 Fan"
+    command_topic: "clb/urban_eden/EDEN1/switch/RLY8/set"
+    state_topic: "clb/urban_eden/EDEN1/switch/RLY8/stat"
+    retain: true
+
+
+
+
+# sensor:
+
+
+
+
+# input_number:
+
+
+
+
+
+
+
+
+
+# ios:
+
+
+
+
+
+# script:
+
+
+
+
+
+# automation:
